@@ -25,7 +25,7 @@ router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/").get(verifyJWT, fetchUsers);
 router.route("/:id").delete(verifyJWT, deleteUser);
 router.route("/pdfs").get(verifyJWT, listPDFs); // List all PDFs
-router.route("/view/:filename").get(verifyJWT, viewPDF); // View PDF inline
+router.route("/view/:filename").get(viewPDF); // View PDF inline
 router.route("/download/:filename").get(verifyJWT, downloadPDF); // Download PDF
 
 export default router;
