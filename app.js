@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://diamondinstitute.netlify.app", // or your exact frontend URL
+    origin: "https://diamondinstitute.netlify.app", 
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],

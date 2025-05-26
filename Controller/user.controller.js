@@ -7,6 +7,7 @@ import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 import path from "path";
 import fs from "fs";
+import { log } from "console";
 
 const generateAccessAndRefereshTokens = async (userId, model) => {
   try {
@@ -174,14 +175,13 @@ const loginUser = asyncHandler(async (req, res) => {
     .select("-password -refreshToken");
 
   // Return response with role
+  console.log(accessToken, refreshToken);
+  
 
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: "None",
-    domain: ".onrender.com", 
-    path: "/", 
-    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    maxAge: 24 * 60 * 60 * 1000,
   };
   return res
     .status(200)
@@ -191,10 +191,7 @@ const loginUser = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         {
-          user: loggedInUser,
-          accessToken,
-          refreshToken,
-          role, 
+          user: loggedInUser, accessToken, refreshToken, role, 
         },
         "Logged in successfully"
       )
